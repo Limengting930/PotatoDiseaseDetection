@@ -1,0 +1,41 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="4">
+            <item index="0" class="java.lang.String" itemvalue="absl-py" />
+            <item index="1" class="java.lang.String" itemvalue="protobuf" />
+            <item index="2" class="java.lang.String" itemvalue="PyQt5" />
+            <item index="3" class="java.lang.String" itemvalue="mkl-service" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="W605" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="static_data" />
+          <option value="request_html.requests_html" />
+          <option value="Scrapy" />
+          <option value="scapy.all.TCP" />
+          <option value="scapy.all.IP" />
+          <option value="scapy.all.*" />
+          <option value="tensorflow.keras" />
+          <option value="train.Conv2D" />
+          <option value="train.*" />
+          <option value="Dectetion.Y" />
+          <option value="yolov5.cpu" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
