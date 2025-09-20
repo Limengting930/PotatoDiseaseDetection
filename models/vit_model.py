@@ -1,10 +1,11 @@
+# 修改 models/vit_model.py 文件
 from tensorflow import keras
 from tensorflow.keras import layers
 import tensorflow as tf
 
 class Patches(layers.Layer):
-    def __init__(self, patch_size):
-        super().__init__()
+    def __init__(self, patch_size, **kwargs):
+        super().__init__(**kwargs)
         self.patch_size = patch_size
 
     def call(self, images):
@@ -25,10 +26,19 @@ class Patches(layers.Layer):
         # reshape 为 [batch, num_patches, patch_dim]
         patches = tf.reshape(patches, [batch_size, num_patches, patch_dim])
         return patches
+    
+    def get_config(self):
+        config = super().get_config()
+        config.update({
+            "patch_size": self.patch_size
+        })
+        return config
 
 class PatchEncoder(layers.Layer):
-    def __init__(self, num_patches, projection_dim):
-        super().__init__()
+    def __init__(self, num_patches, projection_dim, **kwargs):
+        super().__init__(**kwargs)
+        self.num_patches = num_patches
+        self.projection_dim = projection_dim
         self.projection = layers.Dense(units=projection_dim)
         self.position_embedding = layers.Embedding(input_dim=num_patches, output_dim=projection_dim)
 
@@ -37,6 +47,14 @@ class PatchEncoder(layers.Layer):
         positions = tf.expand_dims(positions, axis=0)
         encoded = self.projection(patches) + self.position_embedding(positions)
         return encoded
+    
+    def get_config(self):
+        config = super().get_config()
+        config.update({
+            "num_patches": self.num_patches,
+            "projection_dim": self.projection_dim
+        })
+        return config
 
 def build_vit_model(input_shape=(224, 224, 3), num_classes=5, patch_size=16, projection_dim=64, transformer_layers=8):
     inputs = keras.Input(shape=input_shape)
@@ -58,6 +76,3 @@ def build_vit_model(input_shape=(224, 224, 3), num_classes=5, patch_size=16, pro
     outputs = layers.Dense(num_classes, activation="softmax")(x)
 
     return keras.Model(inputs, outputs)
-
-# model = build_vit_model() 
-# model.summary()
