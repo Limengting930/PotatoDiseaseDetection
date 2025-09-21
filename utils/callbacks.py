@@ -11,7 +11,7 @@ def get_callbacks(model_name="best_model"):
         keras.callbacks.EarlyStopping(
             patience=5,
             restore_best_weights=True,
-            monitor="val_loss"
+            monitor="val_accuracy"
         ),
         keras.callbacks.ModelCheckpoint(
             filepath=f"{model_name}.weights.h5",  # 仅保存权重

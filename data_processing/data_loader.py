@@ -4,7 +4,7 @@ import os
 import random
 import numpy as np
 
-def load_and_split_datasets(data_dir, image_size=(224, 224), batch_size=32, split_ratios=(0.8, 0.1, 0.1)):
+def load_and_split_datasets(data_dir, image_size=(224, 224), batch_size=2, split_ratios=(0.8, 0.1, 0.1)):
     # 设置随机种子确保划分一致性
     random.seed(123)
     np.random.seed(123)

@@ -1,6 +1,6 @@
 from tensorflow import keras
 
-def build_resnet50_model(input_shape=(224, 224, 3), num_classes=3):
+def build_resnet50_model(input_shape=(224, 224, 3), num_classes=5):
     base_model = keras.applications.ResNet50(
         include_top=False,
         weights='imagenet',

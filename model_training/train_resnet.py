@@ -9,13 +9,13 @@ def train_resnet(train_ds, valid_ds, num_classes):
     callbacks = get_callbacks(model_name="best_resnet")
     history = model.fit(
         train_ds,
-        epochs=20,
+        epochs=10,
         validation_data=valid_ds,
         callbacks=callbacks
     )
 
     # 加载最佳权重
-    model.load_weights("best_resnet_weights.h5")
+    model.load_weights("best_resnet.weights.h5")
 
     # 保存完整模型 (结构 + 权重)
     model.save("best_resnet_model.h5")
